@@ -6,6 +6,7 @@ int vis[105][105];
 long long x, y;
 long long T;
 int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
+
 bool dfs(int x, int y, int power)
 { // x,y那里能不能出去
     vis[x][y] = 1;
@@ -45,7 +46,6 @@ int main()
                     max_aij = arr[i][j];
             }
         }
-
         int left = 0, right = max_aij;
         if (dfs(x, y, 0))
             right = 0; // 以防left也能行

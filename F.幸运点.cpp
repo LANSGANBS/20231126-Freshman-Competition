@@ -1,30 +1,75 @@
 #include <bits/stdc++.h>
-#define endl '\n'
-#define buff ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-/*
-#pragma GCC optimize ("Ofast")
-#pragma GCC optimize ("unroll-loops")
-#pragma GCC optimize(3)
-*/
 using namespace std;
-#define ll long long
-#define int ll
-
-void solve()
+long long T;
+long long n, k;
+long long arr[200005];
+vector<int> edge[200005];
+int visited[200005];
+int main()
 {
-    // wout <<L" "<<endl;
-    // cout << R"( )" << endl;
-}
-
-signed main()
-{
-    // setlocale(LC_ALL, "");
-    buff;
-    int t = 1;
-    //	cin >> t;
-    while (t--)
+    cin >> T;
+    while (T--)
     {
-        solve();
+        cin >> n >> k;
+        for (int i = 1; i <= n; i++)
+        {
+            edge[i].clear();
+            visited[i] = 0;
+        }
+        for (int i = 0; i < n - 1; i++)
+        {
+            int u, v;
+            cin >> u >> v;
+            edge[u].push_back(v);
+            edge[v].push_back(u);
+        }
+        for (int i = 1; i <= n; i++)
+        {
+            cin >> arr[i];
+        }
+        int ans = 0;
+        queue<int> que;
+        visited[1] = 1;
+        que.push(1);
+        while (!que.empty())
+        {
+            int t = que.front();
+            que.pop();
+            int mark = 0;
+            for (int i = 0; i < edge[t].size(); i++)
+            {
+                int subnode = edge[t][i];
+                if (visited[subnode])
+                {
+                    continue;
+                }
+                else
+                {
+                    visited[subnode] = 1;
+                    que.push(subnode);
+                    // cout<<"visiting: "<<subnode<<endl;
+                    if (arr[t] == arr[subnode] + k || arr[t] == arr[subnode] - k)
+                    {
+                        mark += 1;
+                    }
+                    // cout<<" is node? "<<mark<<endl;
+                }
+            }
+            ans += mark;
+        }
+        cout << ans << endl;
     }
-    return 0;
 }
+
+/*
+2
+6 3
+1 2
+1 3
+2 4
+2 5
+1 6
+1 1 4 5 1 4
+1 114514
+1919810
+*/
