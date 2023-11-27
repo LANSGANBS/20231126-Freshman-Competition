@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 long long n, W;
 long long T;
+
 bool func(long long hard2count[], int day, int already)
 { // day天把hard2count都干完，且第一天已经学了already可不可行
     if (day == 0)
