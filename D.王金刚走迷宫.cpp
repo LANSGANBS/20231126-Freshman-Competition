@@ -8,10 +8,10 @@ long long T;
 int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
 
 bool dfs(int x, int y, int power)
-{ // x,y那里能不能出去
+{
     vis[x][y] = 1;
     if (x == 1 || x == n || y == 1 || y == m)
-    { // 在边缘就能走出去了
+    {
         return true;
     }
     for (int i = 0; i < 4; i++)
@@ -48,20 +48,20 @@ int main()
         }
         int left = 0, right = max_aij;
         if (dfs(x, y, 0))
-            right = 0; // 以防left也能行
+            right = 0;
         while (left < right)
         {
             int mid = (left + right) / 2;
             if (mid == left)
-            { // right==left+1,ans=right
+            {
                 break;
             }
             if (dfs(x, y, mid))
-            { // mid can do it,then find smaller mid
+            {
                 right = mid;
             }
             else
-            { // mid can't do it
+            {
                 left = mid;
             }
         }
